@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.configfiles.maven.DefaultMavenSettingsProvider plugin="config-file-provider@2.7.4">
+  <configs>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1406919057345</string>
+      <org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig>
+        <id>org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1406919057345</id>
+        <name>Maven settings</name>
+        <comment>Sets up central nexus server</comment>
+        <content>&lt;settings&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;nexus&lt;/id&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+  &lt;mirrors&gt;
+    &lt;mirror&gt;
+      &lt;!--This sends everything else to /public --&gt;
+      &lt;id&gt;nexus&lt;/id&gt;
+      &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+      &lt;url&gt;https://nexus.subrosagames.com/content/groups/public&lt;/url&gt;
+    &lt;/mirror&gt;
+  &lt;/mirrors&gt;
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;nexus&lt;/id&gt;
+      &lt;!--Enable snapshots for the built in central repo to direct --&gt;
+      &lt;!--all requests to nexus via the mirror --&gt;
+      &lt;repositories&gt;
+        &lt;repository&gt;
+          &lt;id&gt;central&lt;/id&gt;
+          &lt;url&gt;http://central&lt;/url&gt;
+          &lt;releases&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/releases&gt;
+          &lt;snapshots&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/snapshots&gt;
+        &lt;/repository&gt;
+      &lt;/repositories&gt;
+     &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+          &lt;id&gt;central&lt;/id&gt;
+          &lt;url&gt;http://central&lt;/url&gt;
+          &lt;releases&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/releases&gt;
+          &lt;snapshots&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/snapshots&gt;
+        &lt;/pluginRepository&gt;
+      &lt;/pluginRepositories&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+  &lt;activeProfiles&gt;
+    &lt;!--make the profile active all the time --&gt;
+    &lt;activeProfile&gt;nexus&lt;/activeProfile&gt;
+  &lt;/activeProfiles&gt;
+&lt;/settings&gt;
+</content>
+        <serverCredentialMappings>
+          <org.jenkinsci.plugins.configfiles.maven.security.ServerCredentialMapping>
+            <serverId>nexus</serverId>
+            <credentialsId>7abd0bf6-448d-49fa-bd6a-78fbb92fdeb3</credentialsId>
+          </org.jenkinsci.plugins.configfiles.maven.security.ServerCredentialMapping>
+          <org.jenkinsci.plugins.configfiles.maven.security.ServerCredentialMapping>
+            <serverId>subrosa-releases</serverId>
+            <credentialsId>7abd0bf6-448d-49fa-bd6a-78fbb92fdeb3</credentialsId>
+          </org.jenkinsci.plugins.configfiles.maven.security.ServerCredentialMapping>
+          <org.jenkinsci.plugins.configfiles.maven.security.ServerCredentialMapping>
+            <serverId>subrosa-snapshots</serverId>
+            <credentialsId>7abd0bf6-448d-49fa-bd6a-78fbb92fdeb3</credentialsId>
+          </org.jenkinsci.plugins.configfiles.maven.security.ServerCredentialMapping>
+        </serverCredentialMappings>
+      </org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig>
+    </entry>
+  </configs>
+</org.jenkinsci.plugins.configfiles.maven.DefaultMavenSettingsProvider>

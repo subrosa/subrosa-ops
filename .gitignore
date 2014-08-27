@@ -1,2 +1,14 @@
 jenkins/.vagrant/
 jenkins/docker/certs
+jenkins/jenkins_home/jobs/
+jenkins/jenkins_home/plugins/
+jenkins/jenkins_home/*log
+jenkins/jenkins_home/fingerprints/
+jenkins/jenkins_home/.owner
+jenkins/jenkins_home/identity.key.enc
+jenkins/jenkins_home/queue.xml.bak
+jenkins/jenkins_home/secret.key
+jenkins/jenkins_home/secret.key.not-so-secret
+jenkins/jenkins_home/secrets/
+jenkins/jenkins_home/updates/
+jenkins/jenkins_home/war/
