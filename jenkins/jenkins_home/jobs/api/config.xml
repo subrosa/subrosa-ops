@@ -3,29 +3,66 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.plugins.mercurial.MercurialSCM" plugin="mercurial@1.50">
-    <installation>Mercurial 2.8.2</installation>
-    <source>https://hg.subrosagames.com/libraries/api/</source>
-    <modules></modules>
-    <revisionType>BRANCH</revisionType>
-    <revision>default</revision>
-    <clean>true</clean>
-    <browser class="hudson.plugins.mercurial.browser.HgWeb">
-      <url>https://hg.subrosagames.com/libraries/api/</url>
-    </browser>
-    <credentialsId>7abd0bf6-448d-49fa-bd6a-78fbb92fdeb3</credentialsId>
-    <disableChangeLog>false</disableChangeLog>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.9.1">
+      <projectUrl>https://github.com/subrosa/api-library/</projectUrl>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>sha1</name>
+          <description>git commit or refname</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <refspec>+refs/pull/*:refs/remotes/origin/pr/*</refspec>
+        <url>https://github.com/subrosa/api-library.git</url>
+        <credentialsId>c2f3343b-3092-4d05-a61c-a703ab3da609</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>${sha1}</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>H/15 * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.9.1">
+      <spec></spec>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
+    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.14-7">
+      <spec>H/5 * * * *</spec>
+      <adminlist>josiahgore
+redworm</adminlist>
+      <orgslist></orgslist>
+      <cron>H/5 * * * *</cron>
+      <triggerPhrase></triggerPhrase>
+      <onlyTriggerPhrase>false</onlyTriggerPhrase>
+      <useGitHubHooks>false</useGitHubHooks>
+      <permitAll>false</permitAll>
+      <commentFilePath></commentFilePath>
+      <whitelist></whitelist>
+      <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
+      <whiteListTargetBranches>
+        <org.jenkinsci.plugins.ghprb.GhprbBranch>
+          <branch></branch>
+        </org.jenkinsci.plugins.ghprb.GhprbBranch>
+      </whiteListTargetBranches>
+      <project>api</project>
+    </org.jenkinsci.plugins.ghprb.GhprbTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootModule>
@@ -35,7 +72,7 @@
   <goals>deploy</goals>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <ignoreUpstremChanges>true</ignoreUpstremChanges>
+  <ignoreUpstremChanges>false</ignoreUpstremChanges>
   <archivingDisabled>false</archivingDisabled>
   <siteArchivingDisabled>false</siteArchivingDisabled>
   <fingerprintingDisabled>false</fingerprintingDisabled>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.ghprb.GhprbTrigger_-DescriptorImpl plugin="ghprb@1.14-7">
+  <serverAPIUrl>https://api.github.com</serverAPIUrl>
+  <whitelistPhrase>.*add\W+to\W+whitelist.*</whitelistPhrase>
+  <okToTestPhrase>.*ok\W+to\W+test.*</okToTestPhrase>
+  <retestPhrase>.*test\W+this\W+please.*</retestPhrase>
+  <skipBuildPhrase>.*\[skip\W+ci\].*</skipBuildPhrase>
+  <cron>H/5 * * * *</cron>
+  <useComments>false</useComments>
+  <logExcerptLines>0</logExcerptLines>
+  <unstableAs>FAILURE</unstableAs>
+  <msgSuccess>Test PASSed.</msgSuccess>
+  <msgFailure>Test FAILed.</msgFailure>
+  <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
+  <username>subrosa-bot</username>
+  <password>o6taYDb9Q9k0qkKpNNkL4Bcif1xxm8P8</password>
+  <accessToken>011c18eac317f52075eb034bc9dec6b8d198bf60</accessToken>
+  <adminlist>josiahgore
+redworm</adminlist>
+  <publishedURL></publishedURL>
+  <requestForTestingPhrase>Can one of the admins verify this patch?</requestForTestingPhrase>
+  <jobs>
+    <entry>
+      <string>api</string>
+      <concurrent-hash-map/>
+    </entry>
+    <entry>
+      <string>subrosa</string>
+      <concurrent-hash-map/>
+    </entry>
+  </jobs>
+</org.jenkinsci.plugins.ghprb.GhprbTrigger_-DescriptorImpl>
