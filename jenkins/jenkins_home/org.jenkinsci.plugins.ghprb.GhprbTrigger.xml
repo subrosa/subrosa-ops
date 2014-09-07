@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<org.jenkinsci.plugins.ghprb.GhprbTrigger_-DescriptorImpl plugin="ghprb@1.14-7">
+<org.jenkinsci.plugins.ghprb.GhprbTrigger_-DescriptorImpl plugin="ghprb@1.15-1">
   <serverAPIUrl>https://api.github.com</serverAPIUrl>
   <whitelistPhrase>.*add\W+to\W+whitelist.*</whitelistPhrase>
   <okToTestPhrase>.*ok\W+to\W+test.*</okToTestPhrase>
@@ -21,7 +21,19 @@ redworm</adminlist>
   <requestForTestingPhrase>Can one of the admins verify this patch?</requestForTestingPhrase>
   <jobs>
     <entry>
+      <string>subrosa-gradle</string>
+      <concurrent-hash-map/>
+    </entry>
+    <entry>
+      <string>mvn-support</string>
+      <concurrent-hash-map/>
+    </entry>
+    <entry>
       <string>api</string>
+      <concurrent-hash-map/>
+    </entry>
+    <entry>
+      <string>poms</string>
       <concurrent-hash-map/>
     </entry>
     <entry>

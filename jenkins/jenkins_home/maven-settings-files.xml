@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<org.jenkinsci.plugins.configfiles.maven.DefaultMavenSettingsProvider plugin="config-file-provider@2.7.4">
+<org.jenkinsci.plugins.configfiles.maven.DefaultMavenSettingsProvider plugin="config-file-provider@2.7.5">
   <configs>
     <entry>
       <string>org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1406919057345</string>
@@ -11,6 +11,9 @@
   &lt;servers&gt;
     &lt;server&gt;
       &lt;id&gt;nexus&lt;/id&gt;
+      &lt;configuration&gt;
+        &lt;wagonProvider&gt;httpclient&lt;/wagonProvider&gt;
+      &lt;/configuration&gt;
     &lt;/server&gt;
   &lt;/servers&gt;
   &lt;mirrors&gt;

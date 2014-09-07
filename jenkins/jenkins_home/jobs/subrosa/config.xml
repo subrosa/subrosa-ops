@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset plugin="maven-plugin@2.5">
+<project>
   <actions/>
-  <description></description>
+  <description>Subrosa Java API</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.9.1">
@@ -11,11 +11,14 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>sha1</name>
-          <description>git commit or refname</description>
+          <description>git commit</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>true</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
     <configVersion>2</configVersion>
@@ -23,12 +26,15 @@
       <hudson.plugins.git.UserRemoteConfig>
         <refspec>+refs/pull/*:refs/remotes/origin/pr/*</refspec>
         <url>https://github.com/subrosa/subrosa.git</url>
-        <credentialsId>9758fd03-8a7f-4db8-b1fb-fa422db8522a</credentialsId>
+        <credentialsId>c2f3343b-3092-4d05-a61c-a703ab3da609</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
         <name>${sha1}</name>
+      </hudson.plugins.git.BranchSpec>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -43,10 +49,11 @@
     <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.9.1">
       <spec></spec>
     </com.cloudbees.jenkins.GitHubPushTrigger>
-    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.14-7">
+    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.15-1">
       <spec>H/5 * * * *</spec>
       <adminlist>josiahgore
 redworm</adminlist>
+      <allowMembersOfWhitelistedOrgsAsAdmin>false</allowMembersOfWhitelistedOrgsAsAdmin>
       <orgslist></orgslist>
       <cron>H/5 * * * *</cron>
       <triggerPhrase></triggerPhrase>
@@ -55,45 +62,41 @@ redworm</adminlist>
       <permitAll>false</permitAll>
       <commentFilePath></commentFilePath>
       <whitelist></whitelist>
-      <autoCloseFailedPullRequests>true</autoCloseFailedPullRequests>
+      <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
       <whiteListTargetBranches>
         <org.jenkinsci.plugins.ghprb.GhprbBranch>
           <branch></branch>
         </org.jenkinsci.plugins.ghprb.GhprbBranch>
       </whiteListTargetBranches>
-      <project>subrosa</project>
+      <project>subrosa-gradle</project>
     </org.jenkinsci.plugins.ghprb.GhprbTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <rootModule>
-    <groupId>com.subrosa</groupId>
-    <artifactId>subrosa</artifactId>
-  </rootModule>
-  <goals>deploy site</goals>
-  <aggregatorStyleBuild>true</aggregatorStyleBuild>
-  <incrementalBuild>false</incrementalBuild>
-  <ignoreUpstremChanges>false</ignoreUpstremChanges>
-  <archivingDisabled>false</archivingDisabled>
-  <siteArchivingDisabled>false</siteArchivingDisabled>
-  <fingerprintingDisabled>false</fingerprintingDisabled>
-  <resolveDependencies>false</resolveDependencies>
-  <processPlugins>false</processPlugins>
-  <mavenValidationLevel>-1</mavenValidationLevel>
-  <runHeadless>false</runHeadless>
-  <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
-  <settings class="org.jenkinsci.plugins.configfiles.maven.job.MvnSettingsProvider" plugin="config-file-provider@2.7.4">
-    <settingsConfigId>org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig1406919057345</settingsConfigId>
-  </settings>
-  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
-  <reporters>
-    <hudson.plugins.checkstyle.CheckStyleReporter plugin="checkstyle@3.39">
+  <builders>
+    <hudson.plugins.gradle.Gradle plugin="gradle@1.24">
+      <description></description>
+      <switches>-PnexusUsername=josiah -PnexusPassword=n#qaV6Ga</switches>
+      <tasks>clean build javadoc buildDashboard</tasks>
+      <rootBuildScriptDir></rootBuildScriptDir>
+      <buildFile></buildFile>
+      <gradleName>Gradle 2</gradleName>
+      <useWrapper>false</useWrapper>
+      <makeExecutable>false</makeExecutable>
+      <fromRootBuildScriptDir>true</fromRootBuildScriptDir>
+      <useWorkspaceAsHome>false</useWorkspaceAsHome>
+    </hudson.plugins.gradle.Gradle>
+  </builders>
+  <publishers>
+    <hudson.plugins.checkstyle.CheckStylePublisher plugin="checkstyle@3.39">
       <healthy></healthy>
       <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
       <pluginName>[CHECKSTYLE] </pluginName>
-      <thresholdLimit>low</thresholdLimit>
+      <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.57">
+      <thresholds plugin="analysis-core@1.58">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -103,17 +106,21 @@ redworm</adminlist>
         <failedTotalNormal></failedTotalNormal>
         <failedTotalLow></failedTotalLow>
       </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
-      <useStableBuildAsReference>false</useStableBuildAsReference>
-    </hudson.plugins.checkstyle.CheckStyleReporter>
-    <hudson.plugins.findbugs.FindBugsReporter plugin="findbugs@4.56">
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <pattern>build/reports/checkstyle/*.xml</pattern>
+    </hudson.plugins.checkstyle.CheckStylePublisher>
+    <hudson.plugins.findbugs.FindBugsPublisher plugin="findbugs@4.57">
       <healthy></healthy>
       <unHealthy></unHealthy>
-      <pluginName>[FINDBUGS] </pluginName>
       <thresholdLimit>low</thresholdLimit>
+      <pluginName>[FINDBUGS] </pluginName>
+      <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.57">
+      <thresholds plugin="analysis-core@1.58">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -123,20 +130,24 @@ redworm</adminlist>
         <failedTotalNormal></failedTotalNormal>
         <failedTotalLow></failedTotalLow>
       </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
-      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+      <pattern>build/reports/findbugs/*.xml</pattern>
       <isRankActivated>false</isRankActivated>
       <excludePattern></excludePattern>
       <includePattern></includePattern>
-    </hudson.plugins.findbugs.FindBugsReporter>
-    <hudson.plugins.pmd.PmdReporter plugin="pmd@3.38">
+    </hudson.plugins.findbugs.FindBugsPublisher>
+    <hudson.plugins.pmd.PmdPublisher plugin="pmd@3.38">
       <healthy></healthy>
       <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
       <pluginName>[PMD] </pluginName>
-      <thresholdLimit>low</thresholdLimit>
+      <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.57">
+      <thresholds plugin="analysis-core@1.58">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -146,17 +157,21 @@ redworm</adminlist>
         <failedTotalNormal></failedTotalNormal>
         <failedTotalLow></failedTotalLow>
       </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
-      <useStableBuildAsReference>false</useStableBuildAsReference>
-    </hudson.plugins.pmd.PmdReporter>
-    <hudson.plugins.dry.DryReporter plugin="dry@2.40">
+      <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+      <pattern>build/reports/pmd/*.xml</pattern>
+    </hudson.plugins.pmd.PmdPublisher>
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.41">
       <healthy></healthy>
       <unHealthy></unHealthy>
-      <pluginName>[DRY] </pluginName>
       <thresholdLimit>low</thresholdLimit>
+      <pluginName>[WARNINGS] </pluginName>
+      <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.57">
+      <thresholds plugin="analysis-core@1.58">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -166,38 +181,103 @@ redworm</adminlist>
         <failedTotalNormal></failedTotalNormal>
         <failedTotalLow></failedTotalLow>
       </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+      <parserConfigurations/>
+      <consoleParsers>
+        <hudson.plugins.warnings.ConsoleParser>
+          <parserName>Java Compiler (javac)</parserName>
+        </hudson.plugins.warnings.ConsoleParser>
+      </consoleParsers>
+    </hudson.plugins.warnings.WarningsPublisher>
+    <hudson.plugins.tasks.TasksPublisher plugin="tasks@4.40">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[TASKS] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
       <useStableBuildAsReference>false</useStableBuildAsReference>
-      <highThreshold>50</highThreshold>
-      <normalThreshold>25</normalThreshold>
-    </hudson.plugins.dry.DryReporter>
-    <hudson.maven.reporters.MavenMailer>
-      <recipients>josiah@subrosagames.com</recipients>
-      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
-      <sendToIndividuals>false</sendToIndividuals>
-      <perModuleEmail>true</perModuleEmail>
-    </hudson.maven.reporters.MavenMailer>
-  </reporters>
-  <publishers/>
-  <buildWrappers>
-    <org.jvnet.hudson.plugins.m2release.M2ReleaseBuildWrapper plugin="m2release@0.14.0">
-      <scmUserEnvVar></scmUserEnvVar>
-      <scmPasswordEnvVar></scmPasswordEnvVar>
-      <releaseEnvVar>IS_M2RELEASEBUILD</releaseEnvVar>
-      <releaseGoals>-Dresume=false release:prepare release:perform</releaseGoals>
-      <dryRunGoals>-Dresume=false -DdryRun=true release:prepare</dryRunGoals>
-      <selectCustomScmCommentPrefix>false</selectCustomScmCommentPrefix>
-      <selectAppendHudsonUsername>false</selectAppendHudsonUsername>
-      <selectScmCredentials>false</selectScmCredentials>
-      <numberOfReleaseBuildsToKeep>1</numberOfReleaseBuildsToKeep>
-    </org.jvnet.hudson.plugins.m2release.M2ReleaseBuildWrapper>
-  </buildWrappers>
-  <prebuilders/>
-  <postbuilders/>
-  <runPostStepsIfResult>
-    <name>FAILURE</name>
-    <ordinal>2</ordinal>
-    <color>RED</color>
-    <completeBuild>true</completeBuild>
-  </runPostStepsIfResult>
-</maven2-moduleset>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.58">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <high>FIXME HACK XXX</high>
+      <normal>TODO</normal>
+      <low></low>
+      <ignoreCase>false</ignoreCase>
+      <pattern></pattern>
+      <excludePattern></excludePattern>
+    </hudson.plugins.tasks.TasksPublisher>
+    <hudson.plugins.analysis.collector.AnalysisPublisher plugin="analysis-collector@1.41">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[ANALYSIS-COLLECTOR] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.58">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+      <isCheckStyleDeactivated>false</isCheckStyleDeactivated>
+      <isDryDeactivated>true</isDryDeactivated>
+      <isFindBugsDeactivated>false</isFindBugsDeactivated>
+      <isPmdDeactivated>false</isPmdDeactivated>
+      <isOpenTasksDeactivated>false</isOpenTasksDeactivated>
+      <isWarningsDeactivated>false</isWarningsDeactivated>
+    </hudson.plugins.analysis.collector.AnalysisPublisher>
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>build/test-results/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.JavadocArchiver plugin="javadoc@1.2">
+      <javadocDir>build/docs/javadoc</javadocDir>
+      <keepAll>false</keepAll>
+    </hudson.tasks.JavadocArchiver>
+    <hudson.plugins.jacoco.JacocoPublisher plugin="jacoco@1.0.16">
+      <execPattern>**/**.exec</execPattern>
+      <classPattern>**/classes</classPattern>
+      <sourcePattern>**/src/main/java</sourcePattern>
+      <inclusionPattern></inclusionPattern>
+      <exclusionPattern></exclusionPattern>
+      <minimumInstructionCoverage>0</minimumInstructionCoverage>
+      <minimumBranchCoverage>0</minimumBranchCoverage>
+      <minimumComplexityCoverage>0</minimumComplexityCoverage>
+      <minimumLineCoverage>0</minimumLineCoverage>
+      <minimumMethodCoverage>0</minimumMethodCoverage>
+      <minimumClassCoverage>0</minimumClassCoverage>
+      <maximumInstructionCoverage>0</maximumInstructionCoverage>
+      <maximumBranchCoverage>0</maximumBranchCoverage>
+      <maximumComplexityCoverage>0</maximumComplexityCoverage>
+      <maximumLineCoverage>0</maximumLineCoverage>
+      <maximumMethodCoverage>0</maximumMethodCoverage>
+      <maximumClassCoverage>0</maximumClassCoverage>
+      <changeBuildStatus>false</changeBuildStatus>
+    </hudson.plugins.jacoco.JacocoPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>
