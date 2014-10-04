@@ -1,8 +1,6 @@
 FROM jenkins
 
 USER root
-RUN apt-get -y install maven
-RUN apt-get -y install mercurial
 
 ADD certs/hg.subrosagames.com.pem /root/
 ADD certs/nexus.subrosagames.com.pem /root/

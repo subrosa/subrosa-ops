@@ -12,7 +12,7 @@
         <hudson.model.StringParameterDefinition>
           <name>sha1</name>
           <description>git commit</description>
-          <defaultValue></defaultValue>
+          <defaultValue>master</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -68,14 +68,14 @@ redworm</adminlist>
           <branch></branch>
         </org.jenkinsci.plugins.ghprb.GhprbBranch>
       </whiteListTargetBranches>
-      <project>subrosa-gradle</project>
+      <project>subrosa</project>
     </org.jenkinsci.plugins.ghprb.GhprbTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.gradle.Gradle plugin="gradle@1.24">
       <description></description>
-      <switches>-PnexusUsername=josiah -PnexusPassword=n#qaV6Ga</switches>
+      <switches>-PnexusUsername=jenkins -PnexusPassword=&apos;jDTtuw&amp;a%r%hTQ&amp;yzEHsz@DDp5*DMDU^&apos;</switches>
       <tasks>clean build javadoc buildDashboard</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
@@ -279,5 +279,15 @@ redworm</adminlist>
       <changeBuildStatus>false</changeBuildStatus>
     </hudson.plugins.jacoco.JacocoPublisher>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.configfiles.buildwrapper.ConfigFileBuildWrapper plugin="config-file-provider@2.7.5">
+      <managedFiles>
+        <org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+          <fileId>org.jenkinsci.plugins.configfiles.custom.CustomConfig1410189922121</fileId>
+          <targetLocation></targetLocation>
+          <variable></variable>
+        </org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+      </managedFiles>
+    </org.jenkinsci.plugins.configfiles.buildwrapper.ConfigFileBuildWrapper>
+  </buildWrappers>
 </project>

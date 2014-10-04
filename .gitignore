@@ -1,5 +1,4 @@
 jenkins/.vagrant/
-jenkins/docker/certs
 jenkins/jenkins_home/jobs/
 jenkins/jenkins_home/plugins/
 jenkins/jenkins_home/*log
