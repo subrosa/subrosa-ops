@@ -8,8 +8,8 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>sha1</name>
-          <description></description>
-          <defaultValue>HEAD</defaultValue>
+          <description>git commit</description>
+          <defaultValue>master</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -43,6 +43,9 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.9.1">
+      <spec></spec>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
     <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.15-1">
       <spec>H/5 * * * *</spec>
       <adminlist>josiahgore

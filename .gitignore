@@ -1,6 +1,5 @@
 jenkins/.vagrant/
 jenkins/jenkins_home/jobs/
-jenkins/jenkins_home/plugins/
 jenkins/jenkins_home/*log
 jenkins/jenkins_home/fingerprints/
 jenkins/jenkins_home/.owner
