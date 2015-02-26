@@ -1,6 +1,10 @@
+.gradle/
+.idea/
+.vagrant/
+**/*.iml
 jenkins/.vagrant/
-jenkins/jenkins_home/jobs/
 jenkins/jenkins_home/*log
+jenkins/jenkins_home/cache/
 jenkins/jenkins_home/fingerprints/
 jenkins/jenkins_home/.owner
 jenkins/jenkins_home/identity.key.enc
@@ -10,3 +14,10 @@ jenkins/jenkins_home/secret.key.not-so-secret
 jenkins/jenkins_home/secrets/
 jenkins/jenkins_home/updates/
 jenkins/jenkins_home/war/
+jenkins/jenkins_home/jobs/*/builds/
+jenkins/jenkins_home/jobs/*/javadoc/
+jenkins/jenkins_home/jobs/*/lastStable
+jenkins/jenkins_home/jobs/*/lastSuccessful
+jenkins/jenkins_home/jobs/*/nextBuildNumber
+jenkins/jenkins_home/jobs/*/scm-polling.log
+jenkins/jenkins_home/jobs/*/workspace/

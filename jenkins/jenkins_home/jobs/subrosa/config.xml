@@ -75,12 +75,16 @@ redworm</adminlist>
   <builders>
     <hudson.plugins.gradle.Gradle plugin="gradle@1.24">
       <description></description>
-      <switches>-PnexusUsername=jenkins -PnexusPassword=&apos;jDTtuw&amp;a%r%hTQ&amp;yzEHsz@DDp5*DMDU^&apos;</switches>
-      <tasks>clean build javadoc buildDashboard</tasks>
+      <switches>-PnexusUsername=jenkins
+-PnexusPassword=&apos;jDTtuw&amp;a%r%hTQ&amp;yzEHsz@DDp5*DMDU^&apos;</switches>
+      <tasks>clean
+build
+javadoc
+buildDashboard</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
-      <gradleName>Gradle 2</gradleName>
-      <useWrapper>false</useWrapper>
+      <gradleName>(Default)</gradleName>
+      <useWrapper>true</useWrapper>
       <makeExecutable>false</makeExecutable>
       <fromRootBuildScriptDir>true</fromRootBuildScriptDir>
       <useWorkspaceAsHome>false</useWorkspaceAsHome>

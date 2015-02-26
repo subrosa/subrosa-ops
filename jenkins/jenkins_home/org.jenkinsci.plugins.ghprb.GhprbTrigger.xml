@@ -21,23 +21,299 @@ redworm</adminlist>
   <requestForTestingPhrase>Can one of the admins verify this patch?</requestForTestingPhrase>
   <jobs>
     <entry>
-      <string>subrosa-gradle</string>
+      <string>poms</string>
       <concurrent-hash-map/>
     </entry>
     <entry>
-      <string>mvn-support</string>
-      <concurrent-hash-map/>
+      <string>subrosa</string>
+      <concurrent-hash-map>
+        <entry>
+          <int>35</int>
+          <org.jenkinsci.plugins.ghprb.GhprbPullRequest>
+            <id>35</id>
+            <author plugin="github-api@1.58">
+              <root>
+                <login>subrosa-bot</login>
+                <encodedAuthorization>token 011c18eac317f52075eb034bc9dec6b8d198bf60</encodedAuthorization>
+                <users>
+                  <entry>
+                    <string>subrosa-bot</string>
+                    <org.kohsuke.github.GHMyself>
+                      <root reference="../../../.."/>
+                      <login>subrosa-bot</login>
+                      <avatar__url>https://avatars.githubusercontent.com/u/8496696?v=3</avatar__url>
+                      <url>https://api.github.com/users/subrosa-bot</url>
+                      <gravatar__id></gravatar__id>
+                      <id>8496696</id>
+                      <created__at>2014-08-19T22:29:38Z</created__at>
+                      <html__url>https://github.com/subrosa-bot</html__url>
+                      <followers>0</followers>
+                      <following>0</following>
+                      <public__repos>0</public__repos>
+                      <public__gists>0</public__gists>
+                    </org.kohsuke.github.GHMyself>
+                  </entry>
+                </users>
+                <orgs/>
+                <apiUrl>https://api.github.com</apiUrl>
+                <connector class="org.kohsuke.github.HttpConnector$1"/>
+              </root>
+              <login>josiahgore</login>
+              <avatar__url>https://avatars.githubusercontent.com/u/636292?v=3</avatar__url>
+              <url>https://api.github.com/users/josiahgore</url>
+              <gravatar__id></gravatar__id>
+              <id>636292</id>
+              <created__at>2011-02-24T16:19:07Z</created__at>
+              <html__url>https://github.com/josiahgore</html__url>
+              <followers>1</followers>
+              <following>3</following>
+              <public__repos>4</public__repos>
+              <public__gists>0</public__gists>
+            </author>
+            <pr plugin="github-api@1.58">
+              <root reference="../../author/root"/>
+              <owner>
+                <root reference="../../../author/root"/>
+                <description>Subrosa API</description>
+                <name>subrosa</name>
+                <full__name>subrosa/subrosa</full__name>
+                <url>https://api.github.com/repos/subrosa/subrosa</url>
+                <html__url>https://github.com/subrosa/subrosa</html__url>
+                <git__url>git://github.com/subrosa/subrosa.git</git__url>
+                <ssh__url>git@github.com:subrosa/subrosa.git</ssh__url>
+                <clone__url>https://github.com/subrosa/subrosa.git</clone__url>
+                <svn__url>https://github.com/subrosa/subrosa</svn__url>
+                <owner>
+                  <login>subrosa</login>
+                  <avatar__url>https://avatars.githubusercontent.com/u/4010736?v=3</avatar__url>
+                  <url>https://api.github.com/users/subrosa</url>
+                  <gravatar__id></gravatar__id>
+                  <id>4010736</id>
+                  <html__url>https://github.com/subrosa</html__url>
+                  <followers>0</followers>
+                  <following>0</following>
+                  <public__repos>0</public__repos>
+                  <public__gists>0</public__gists>
+                </owner>
+                <has__issues>false</has__issues>
+                <has__wiki>true</has__wiki>
+                <fork>false</fork>
+                <has__downloads>true</has__downloads>
+                <__private>true</__private>
+                <watchers>0</watchers>
+                <forks>3</forks>
+                <open__issues>1</open__issues>
+                <size>2938</size>
+                <network__count>3</network__count>
+                <subscribers__count>2</subscribers__count>
+                <created__at>2014-08-19T18:28:37Z</created__at>
+                <pushed__at>2015-02-17T22:32:10Z</pushed__at>
+                <milestones/>
+                <default__branch>master</default__branch>
+                <language>Java</language>
+                <commits/>
+                <permissions>
+                  <pull>true</pull>
+                  <push>true</push>
+                  <admin>false</admin>
+                </permissions>
+                <postCommitHooks class="org.kohsuke.github.GHRepository$10">
+                  <outer-class reference="../.."/>
+                </postCommitHooks>
+              </owner>
+              <state>open</state>
+              <number>35</number>
+              <comments>1</comments>
+              <body>https://app.asana.com/0/27820313676680/27370644346690 - join game call will now correctly look for a playerId field referring to an account player profile&#xd;
+https://app.asana.com/0/27820313676680/26997728838393 - i&apos;ve made location_id nullable and moved geolocation into an asynchronous process&#xd;
+https://app.asana.com/0/27820313676680/26997728838383 - image deletion implemented&#xd;
+https://app.asana.com/0/27820313676680/26997728838387 - missing file upload should now result in a 400 Bad Request with notification code &quot;invalidRequestEntity&quot;&#xd;
+https://app.asana.com/0/27820313676680/26121884591488 - there is now a &quot;required&quot; flag on enrollment fields. defaults to true&#xd;
+&#xd;
+also -&#xd;
+checks are now in place to prevent deletion of images that are used in player profiles or player profiles that are in use in game players&#xd;
+we&apos;ve taken the plunge - java 8 is required&#xd;
+rabbitmq is employed for the address geocoding. ./sr init or ./sr run gets it running.&#xd;
+</body>
+              <user>
+                <login>josiahgore</login>
+                <avatar__url>https://avatars.githubusercontent.com/u/636292?v=3</avatar__url>
+                <url>https://api.github.com/users/josiahgore</url>
+                <gravatar__id></gravatar__id>
+                <id>636292</id>
+                <html__url>https://github.com/josiahgore</html__url>
+                <followers>0</followers>
+                <following>0</following>
+                <public__repos>0</public__repos>
+                <public__gists>0</public__gists>
+              </user>
+              <title>several bug fixes and enhancements related to players and joining games</title>
+              <created__at>2015-02-25T20:57:22Z</created__at>
+              <html__url>https://github.com/subrosa/subrosa/pull/35</html__url>
+              <url>https://api.github.com/repos/subrosa/subrosa/pulls/35</url>
+              <updated__at>2015-02-26T15:38:04Z</updated__at>
+              <id>30024502</id>
+              <patch__url>https://github.com/subrosa/subrosa/pull/35.patch</patch__url>
+              <diff__url>https://github.com/subrosa/subrosa/pull/35.diff</diff__url>
+              <issue__url>https://api.github.com/repos/subrosa/subrosa/issues/35</issue__url>
+              <base>
+                <ref>master</ref>
+                <sha>a7b3cbe348ad70f20fd1eb1c9380b9cad97c4f17</sha>
+                <label>subrosa:master</label>
+                <user>
+                  <login>subrosa</login>
+                  <avatar__url>https://avatars.githubusercontent.com/u/4010736?v=3</avatar__url>
+                  <url>https://api.github.com/users/subrosa</url>
+                  <gravatar__id></gravatar__id>
+                  <id>4010736</id>
+                  <html__url>https://github.com/subrosa</html__url>
+                  <followers>0</followers>
+                  <following>0</following>
+                  <public__repos>0</public__repos>
+                  <public__gists>0</public__gists>
+                </user>
+                <repo>
+                  <description>Subrosa API</description>
+                  <name>subrosa</name>
+                  <full__name>subrosa/subrosa</full__name>
+                  <url>https://api.github.com/repos/subrosa/subrosa</url>
+                  <html__url>https://github.com/subrosa/subrosa</html__url>
+                  <git__url>git://github.com/subrosa/subrosa.git</git__url>
+                  <ssh__url>git@github.com:subrosa/subrosa.git</ssh__url>
+                  <clone__url>https://github.com/subrosa/subrosa.git</clone__url>
+                  <svn__url>https://github.com/subrosa/subrosa</svn__url>
+                  <owner>
+                    <login>subrosa</login>
+                    <avatar__url>https://avatars.githubusercontent.com/u/4010736?v=3</avatar__url>
+                    <url>https://api.github.com/users/subrosa</url>
+                    <gravatar__id></gravatar__id>
+                    <id>4010736</id>
+                    <html__url>https://github.com/subrosa</html__url>
+                    <followers>0</followers>
+                    <following>0</following>
+                    <public__repos>0</public__repos>
+                    <public__gists>0</public__gists>
+                  </owner>
+                  <has__issues>false</has__issues>
+                  <has__wiki>true</has__wiki>
+                  <fork>false</fork>
+                  <has__downloads>true</has__downloads>
+                  <__private>true</__private>
+                  <watchers>0</watchers>
+                  <forks>3</forks>
+                  <open__issues>1</open__issues>
+                  <size>2938</size>
+                  <network__count>0</network__count>
+                  <subscribers__count>0</subscribers__count>
+                  <created__at>2014-08-19T18:28:37Z</created__at>
+                  <pushed__at>2015-02-17T22:32:10Z</pushed__at>
+                  <milestones/>
+                  <default__branch>master</default__branch>
+                  <language>Java</language>
+                  <commits/>
+                  <postCommitHooks class="org.kohsuke.github.GHRepository$10">
+                    <outer-class reference="../.."/>
+                  </postCommitHooks>
+                </repo>
+              </base>
+              <head>
+                <ref>join-with-player</ref>
+                <sha>6a42ac4e225cb42c8f632635de7fe9d6b5a13f81</sha>
+                <label>josiahgore:join-with-player</label>
+                <user>
+                  <login>josiahgore</login>
+                  <avatar__url>https://avatars.githubusercontent.com/u/636292?v=3</avatar__url>
+                  <url>https://api.github.com/users/josiahgore</url>
+                  <gravatar__id></gravatar__id>
+                  <id>636292</id>
+                  <html__url>https://github.com/josiahgore</html__url>
+                  <followers>0</followers>
+                  <following>0</following>
+                  <public__repos>0</public__repos>
+                  <public__gists>0</public__gists>
+                </user>
+                <repo>
+                  <description>Subrosa API</description>
+                  <name>subrosa</name>
+                  <full__name>josiahgore/subrosa</full__name>
+                  <url>https://api.github.com/repos/josiahgore/subrosa</url>
+                  <html__url>https://github.com/josiahgore/subrosa</html__url>
+                  <git__url>git://github.com/josiahgore/subrosa.git</git__url>
+                  <ssh__url>git@github.com:josiahgore/subrosa.git</ssh__url>
+                  <clone__url>https://github.com/josiahgore/subrosa.git</clone__url>
+                  <svn__url>https://github.com/josiahgore/subrosa</svn__url>
+                  <owner>
+                    <login>josiahgore</login>
+                    <avatar__url>https://avatars.githubusercontent.com/u/636292?v=3</avatar__url>
+                    <url>https://api.github.com/users/josiahgore</url>
+                    <gravatar__id></gravatar__id>
+                    <id>636292</id>
+                    <html__url>https://github.com/josiahgore</html__url>
+                    <followers>0</followers>
+                    <following>0</following>
+                    <public__repos>0</public__repos>
+                    <public__gists>0</public__gists>
+                  </owner>
+                  <has__issues>false</has__issues>
+                  <has__wiki>true</has__wiki>
+                  <fork>true</fork>
+                  <has__downloads>true</has__downloads>
+                  <__private>true</__private>
+                  <watchers>0</watchers>
+                  <forks>0</forks>
+                  <open__issues>0</open__issues>
+                  <size>2386</size>
+                  <network__count>0</network__count>
+                  <subscribers__count>0</subscribers__count>
+                  <created__at>2015-02-13T16:47:45Z</created__at>
+                  <pushed__at>2015-02-26T15:38:04Z</pushed__at>
+                  <milestones/>
+                  <default__branch>master</default__branch>
+                  <language>Java</language>
+                  <commits/>
+                  <postCommitHooks class="org.kohsuke.github.GHRepository$10">
+                    <outer-class reference="../.."/>
+                  </postCommitHooks>
+                </repo>
+              </head>
+              <review__comments>0</review__comments>
+              <additions>1251</additions>
+              <merged>false</merged>
+              <mergeable>true</mergeable>
+              <deletions>1419</deletions>
+              <mergeable__state>clean</mergeable__state>
+              <changed__files>118</changed__files>
+            </pr>
+            <title>several bug fixes and enhancements related to players and joining games</title>
+            <updated>2015-02-26 17:30:41.0 UTC</updated>
+            <head>f05763858195cea1ea21c162eedb530eaffc35ff</head>
+            <mergeable>true</mergeable>
+            <reponame>subrosa/subrosa</reponame>
+            <target>master</target>
+            <source>join-with-player</source>
+            <url>https://github.com/subrosa/subrosa/pull/35</url>
+            <commitAuthor class="org.kohsuke.github.GHPullRequestCommitDetail$Authorship" plugin="github-api@1.58">
+              <name>Josiah Gore</name>
+              <email>josiahgore@gmail.com</email>
+              <date>2015-02-26T17:30:28Z</date>
+            </commitAuthor>
+            <shouldRun>false</shouldRun>
+            <accepted>true</accepted>
+            <triggered>false</triggered>
+          </org.jenkinsci.plugins.ghprb.GhprbPullRequest>
+        </entry>
+      </concurrent-hash-map>
     </entry>
     <entry>
       <string>api</string>
       <concurrent-hash-map/>
     </entry>
     <entry>
-      <string>poms</string>
+      <string>subrosa-gradle</string>
       <concurrent-hash-map/>
     </entry>
     <entry>
-      <string>subrosa</string>
+      <string>mvn-support</string>
       <concurrent-hash-map/>
     </entry>
   </jobs>
